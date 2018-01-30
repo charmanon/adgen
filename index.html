@@ -15,7 +15,6 @@
 
 <body>
   <header>
-    Hi!
   </header>
 
   <div>
@@ -49,7 +48,7 @@
 
   <div>
     Segment Start Time
-    <select id="start">
+    <select class="start">
       <option value="00:00">00:00</option>
       <option value="00:15">00:15</option>
       <option value="00:30">00:30</option>
@@ -150,7 +149,7 @@
 
   <div>
     Segment End Time
-    <select id="end">
+    <select class="end">
       <option value="00:00">00:00</option>
       <option value="00:15">00:15</option>
       <option value="00:30">00:30</option>
@@ -248,38 +247,45 @@
       <option value="23:45">23:45</option>
     </select>
   </div>
+
+  <button class="submit" type="button">Submit</button>
+
 </body>
 <script type="text/javascript">
-// var day = document.getElementsByClassName('day');
-//
-// var myFunc = function() {
-// 	var att = this.getAttribute('value');
-// 	console.log(att);
-// };
-//
-// for (var i = 0; i < day.length; i++) {
-// 	day[i].addEventListener('click', myFunc, false);
-// }
-//
-// var sel = document.getElementById('start');
-//
-// // reference to selected option
-// var opt = sel.options[sel.selectedIndex];
-//
-// sel.addEventListener('click', myFunc, false);
-//
-// // display value and text property values
-// console.log(opt.value);
+var days = [];
 
-// function select() {
-// 	var inputs = document.querySelectorAll("input[type='checkbox']");
-// 	console.log(inputs);
-// }
-// function select() {
-// 	if (document.getElementsByClassName('day')[0].checked === true) {
-// 		console.log(document.getElementsByClassName('day')[0].value);
-// 	}
-// }
+document.querySelectorAll('.submit').forEach(function(el){
+    el.addEventListener('click', function(e){
+        e.preventDefault();
+        select();
+    });
+});
+
+function select() {
+	document.querySelectorAll("input[type='checkbox']").forEach(function(el){
+    if(el.classList.contains('day') && el.checked == true){
+      days.push(el.value);
+      //console.log(el.value);
+    }
+  })// closes querySelectorAll
+
+  document.querySelectorAll("input[type='text']").forEach(function(el){
+      console.log(el.value);
+  })
+
+  document.querySelectorAll("select").forEach(function(el){
+    if(el.classList.contains('start') ){
+      console.log(el.value);
+    }
+    if(el.classList.contains('end') ){
+      console.log(el.value);
+    }
+  })
+
+  console.log(days);
+}
+
+
 </script>
 
 </html>
